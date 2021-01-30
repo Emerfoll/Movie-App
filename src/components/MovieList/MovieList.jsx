@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
+import MovieItem from '../MovieItem/MovieItem';
 import { useHistory } from 'react-router-dom';
+
 
 function MovieList() {
 
@@ -13,29 +15,19 @@ function MovieList() {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
-    const movieClicked = (movie) => {
-        let movieId = movie.id
-        let title = movie.title
-        console.log('Movie clicked', movieId, title);
-        history.push('/details')
-        dispatch({type: 'GET_THE_DETS', payload: movieId })
-    }
+    console.log(movies);
 
     return (
         <main>
             <h1>MovieList</h1>
             <section className="movies">
-                {movies.map(movie => {
-                    return (
-                        <div key={movie.id} >
-                            <h3>{movie.title}</h3>
-                            <img 
-                            src={movie.poster} 
-                            alt={movie.title} 
-                            onClick={() => movieClicked(movie)}/>
-                        </div>
-                    );
-                })}
+                {movies.map((movie) => (
+                   <MovieItem 
+                   movie={movie}
+                   key={movie.id}
+                   />
+
+                ))}
             </section>
         </main>
 
