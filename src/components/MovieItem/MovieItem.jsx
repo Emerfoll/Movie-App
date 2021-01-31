@@ -1,7 +1,23 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-
+import {
+    Box,
+    Button,
+    Card,
+    CardActionArea,
+    CardActions,
+    CardContent,
+    IconButton,
+    Menu,
+    MenuItem,
+    Typography,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    TextField,
+} from '@material-ui/core';
 
 
 function MovieItem({ movie }) {
@@ -21,18 +37,29 @@ function MovieItem({ movie }) {
 
 
     return (
-        <div>
+        <div key={movie.id} >
 
-            <div key={movie.id} >
-                <h3>{movie.title}</h3>
-                <img
-                    src={movie.poster}
-                    alt={movie.title}
-                    onClick={() => movieClicked(movie)} />
-            </div>
+            <Card elevation={4}>
+                <CardActionArea>
+                    <Box padding={2} width={300} hight={600}>
+                        <h3>{movie.title}</h3>
+                        <img width={225} src={movie.poster} alt={movie.title} onClick={() => movieClicked(movie)} />
+                    </Box>
+                </CardActionArea>
+            </Card>
+
 
         </div>
     )
 }
 
 export default MovieItem;
+
+
+{/* <div key={movie.id} >
+                        <h3>{movie.title}</h3>
+                        <img
+                            src={movie.poster}
+                            alt={movie.title}
+                            onClick={() => movieClicked(movie)} />
+                    </div> */}

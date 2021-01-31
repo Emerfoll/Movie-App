@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './MovieList.css'
 import MovieItem from '../MovieItem/MovieItem';
 import { useHistory } from 'react-router-dom';
+import { Grid } from '@material-ui/core';
 
 
 function MovieList() {
@@ -19,15 +20,16 @@ function MovieList() {
     return (
         <main>
             <h1>MovieList</h1>
-            <section className="movies">
+            <Grid container spacing={4} justify="center" className="movies">
                 {movies.map((movie) => (
-                   <MovieItem 
-                   movie={movie}
-                   key={movie.id}
-                   />
-
+                    <Grid item key={movie.id}>
+                        <MovieItem
+                            movie={movie}
+                            key={movie.id}
+                        />
+                    </Grid>
                 ))}
-            </section>
+            </Grid>
         </main>
 
     );
