@@ -5,29 +5,34 @@ import {
     HashRouter as Router,
     Route,
     useParams
-  } from "react-router-dom";
-
+} from "react-router-dom";
 
 function MovieDetails(params) {
 
-    useEffect(() => {
-        dispatch({ type: 'FETCH_MOVIES' });
-    }, []);
-    
     const movies = useSelector(store => store.movies);
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
-    const movie = movies[id-1]
+    const movie = movies[id - 1]
+
+    useEffect(() => {
+        dispatch({ type: 'FETCH_MOVIES' });
+        dispatch({ type: 'GET_THE_DETS', payload: id });
+    }, []);
 
 
-
+    console.log(movies);
+    console.log(id);
     console.log(movie);
 
-    return(
+    return (
         <>
-        <h1>MovieDetails for move {movie.title}</h1>
-        <p>{movie.description}</p>
+
+            <h1>MovieDetails for movie {movie?.title}</h1>
+            <img
+                src={movie?.poster}
+                alt={movie?.title} />
+            <p>{movie?.description}</p>
 
         </>
     )

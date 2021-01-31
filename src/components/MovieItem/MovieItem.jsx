@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
-function MovieItem({movie}) {
+function MovieItem({ movie }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -14,12 +14,10 @@ function MovieItem({movie}) {
         let title = movie.title
         console.log('Movie clicked', movieId, title);
         history.push(`/details/${movieId}`)
-        // dispatch({type: 'GET_THE_DETS', payload: movieId })
+
     }
 
-    useEffect(() => {
-        dispatch({ type: 'FETCH_MOVIES' });
-    }, []);
+
 
 
     return (
