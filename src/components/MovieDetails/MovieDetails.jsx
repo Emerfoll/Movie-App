@@ -10,6 +10,7 @@ import {
 function MovieDetails(params) {
 
     const movies = useSelector(store => store.movies);
+    const genres = useSelector(store => store.genres)
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
@@ -17,25 +18,38 @@ function MovieDetails(params) {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
-        dispatch({ type: 'GET_THE_DETS', payload: id });
+        dispatch({ type: 'GET_GENRES', payload: id });
     }, []);
 
 
-    console.log(movies);
-    console.log(id);
-    console.log(movie);
+    console.log(genres);
 
     return (
         <>
 
-            <h1>MovieDetails for movie {movie?.title}</h1>
+            <h1>Movie Details for {movie?.title}</h1>
             <img
                 src={movie?.poster}
                 alt={movie?.title} />
             <p>{movie?.description}</p>
+            <div>
 
+                <h3>Genre:</h3>
+            {genres.map((genre) => {
+               return <p>{genre.name}</p> 
+            })}
+            </div>
         </>
     )
 }
 
 export default MovieDetails;
+
+// {movies.map((movie) => (
+//     <Grid item key={movie.id}>
+//         <MovieItem
+//             movie={movie}
+//             key={movie.id}
+//         />
+//     </Grid>
+// ))}

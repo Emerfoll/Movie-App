@@ -32,14 +32,18 @@ function* fetchAllMovies() {
     }
 }
 
-function* getGenres() {
-    // get all genres from the DB
-    try {
-        const genres = yield axios.get('/api/genre');
-        console.log('get genres:', genres.data);
-        yield put({ type: 'SET_GENRES', payload: genres.data });
-    } catch {
-        console.log('get all genres error');
+function* getGenres(action) {
+    try{
+        console.log('in getGenres saga for id:', action.payload);
+        const response = yield axios.get(`/api/movie/genre/${action.payload}`)
+        console.log('response from server for genre:', response.data);
+        //this data will need to go do a reducer,
+        //that reducer will be grabbed by the details page with useEffect
+        //server get will query both tables
+        yield put({type: 'SET_GENRES', payload: response.data})
+    }catch(error) {
+        console.log(error);
+        alert('problem getting genres')
     }
 }
 
