@@ -5,7 +5,11 @@
 
 This to-do list is my first attempt at creating a functional and attractive full-stack app from scratch.
 
+![screenshot of the app](public/images/AppScreenshot/HomeScreenshot.png)
+![screenshot of the app](public/images/AppScreenshot/DetailsScreenshot.png)
+![screenshot of the app](public/images/AppScreenshot/DetailsScreenshot2.png)
 ![screenshot of the app](public/images/AppScreenshot/AddMovieScreenshot.png)
+
 
 ### Prerequisites
 
