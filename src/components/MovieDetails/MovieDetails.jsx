@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import {
     HashRouter as Router,
+    Route,
     useParams,
+    Link
 } from "react-router-dom";
 
 function MovieDetails(params) {

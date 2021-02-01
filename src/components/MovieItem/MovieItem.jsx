@@ -37,11 +37,11 @@ function MovieItem({ movie }) {
 
 
     return (
-        <div key={movie.id} >
+        <div key={movie.id} className="movieCards" >
             
-            <Card elevation={4} className="movieCards">
+            <Card elevation={4} style={{backgroundColor: "#7d608b"}}>
                 <CardActionArea>
-                    <Box padding={2} width={300} hight={600}>
+                    <Box  width={300} hight={600}>
                         <h3>{movie.title}</h3>
                         <img width={225} src={movie.poster} alt={movie.title} onClick={() => movieClicked(movie)} />
                     </Box>

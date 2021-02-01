@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: #62757f;
+  background-color: #607d8b;
 }
 
 .App-header {
@@ -24,4 +24,8 @@ body {
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.movieCards {
+  background-color: #9c27b0;
 }
