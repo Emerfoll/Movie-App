@@ -4,7 +4,12 @@ import './MovieList.css'
 import MovieItem from '../MovieItem/MovieItem';
 import { useHistory } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
-
+import {
+    HashRouter as Router,
+    Route,
+    useParams,
+    Link
+} from "react-router-dom";
 
 
 function MovieList() {
@@ -17,22 +22,31 @@ function MovieList() {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
+    const handleClick = () => {
+        history.push('/addMovie')
+    }
 
     return (
-        <main>
-            <h1>MovieList</h1>
-            <Grid container spacing={4} justify="center" className="movies">
-                {movies.map((movie) => (
-                    <Grid item key={movie.id} className="movieCardsArea">
-                        <MovieItem
-                            movie={movie}
-                            key={movie.id}
-                        />
-                    </Grid>
-                ))}
-            </Grid>
-        </main>
 
+        <>
+            
+
+            <button className="addBtn" onClick={handleClick} >Add Movie</button>
+
+            <main>
+                <h1>MovieList</h1>
+                <Grid container spacing={4} justify="center" className="movies">
+                    {movies.map((movie) => (
+                        <Grid item key={movie.id} className="movieCardsArea">
+                            <MovieItem
+                                movie={movie}
+                                key={movie.id}
+                            />
+                        </Grid>
+                    ))}
+                </Grid>
+            </main>
+        </>
     );
 }
 

@@ -38,7 +38,7 @@ function MovieItem({ movie }) {
 
     return (
         <div key={movie.id} >
-
+            
             <Card elevation={4} className="movieCards">
                 <CardActionArea>
                     <Box padding={2} width={300} hight={600}>

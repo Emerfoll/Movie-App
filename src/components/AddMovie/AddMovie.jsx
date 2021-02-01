@@ -39,8 +39,6 @@ function AddMovie(params) {
     const [movieDescription, setMovieDescription] = useState('');
     const [movieGenre, setMovieGenre] = useState(0);
     const [anchorEl, setAnchorEl] = useState(null);
-
-
     
 
     
@@ -95,13 +93,15 @@ function AddMovie(params) {
                         value={movieTitle}
                         onChange={(event) => setMovieTitle(event.target.value)} />
                 </div>
+                <br></br>
                 <div>
-                    <TextField id="posterIn" label="Movie Poster URL" variant="outlined"
+                    <TextField width={600} id="posterIn" label="Movie Poster URL" variant="outlined"
                         type="text"
                         value={moviePoster}
                         onChange={(event) => setMoviePoster(event.target.value)}
                     />
                 </div>
+                <br></br>
                 <div>
                     <TextField
                         id="descriptionIn"
@@ -132,7 +132,7 @@ function AddMovie(params) {
                 </select> */}
                 
                 <span>Genre:</span><Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleOpenMenu}>
-                {genres[movieGenre-1]?.name}
+                {(movieGenre ? genres[movieGenre-1].name : 'Select' )}
                 </Button>
                 <Menu
                     value={movieGenre}

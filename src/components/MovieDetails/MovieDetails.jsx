@@ -4,7 +4,8 @@ import { useHistory } from 'react-router-dom';
 import {
     HashRouter as Router,
     Route,
-    useParams
+    useParams,
+    Link
 } from "react-router-dom";
 
 function MovieDetails(params) {
@@ -28,7 +29,11 @@ function MovieDetails(params) {
 
     return (
         <>
-
+        <Router>
+        <nav>
+          <Link to='/'>Home</Link>
+        </nav>
+        </Router>
             <h1>Movie Details for {movie?.title}</h1>
             {details.map((detail)=>{
                 return(

@@ -2,6 +2,9 @@
   text-align: center;
 }
 
+body {
+  background-color: #62757f;
+}
 
 .App-header {
   background-color: #222;
