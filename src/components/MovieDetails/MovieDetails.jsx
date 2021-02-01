@@ -10,7 +10,8 @@ import {
 function MovieDetails(params) {
 
     const movies = useSelector(store => store.movies);
-    const genres = useSelector(store => store.genres)
+    const details = useSelector(store=>store.movieDetailsReducer)
+    const genres = useSelector(store => store.genres);
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
@@ -18,6 +19,7 @@ function MovieDetails(params) {
 
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
+        dispatch({ type: 'GET_THE_DETS', payload: id })
         dispatch({ type: 'GET_GENRES', payload: id });
     }, []);
 
@@ -28,28 +30,25 @@ function MovieDetails(params) {
         <>
 
             <h1>Movie Details for {movie?.title}</h1>
-            <img
-                src={movie?.poster}
-                alt={movie?.title} />
-            <p>{movie?.description}</p>
-            <div>
+            {details.map((detail)=>{
+                return(
+                    <div key={detail.title}>
+                        <h1>{detail.title}</h1>
+                        <img width={300} src={detail.poster} alt={detail.title}></img>
+                        <p>{detail.description}</p>
+                    </div>
+                )
 
-                <h3>Genre:</h3>
-            {genres.map((genre) => {
-               return <p>{genre.name}</p> 
             })}
-            </div>
+            <h3>Great for fans of the genres:</h3>
+            {genres.map((genre)=>{
+                return(
+                    <p key={genre.name}>{genre.name}</p>
+                )
+            })}
         </>
     )
 }
 
 export default MovieDetails;
 
-// {movies.map((movie) => (
-//     <Grid item key={movie.id}>
-//         <MovieItem
-//             movie={movie}
-//             key={movie.id}
-//         />
-//     </Grid>
-// ))}

@@ -18,7 +18,7 @@ import {
     DialogTitle,
     TextField,
 } from '@material-ui/core';
-
+import './MovieItem.css';
 
 function MovieItem({ movie }) {
 
@@ -39,7 +39,7 @@ function MovieItem({ movie }) {
     return (
         <div key={movie.id} >
 
-            <Card elevation={4}>
+            <Card elevation={4} className="movieCards">
                 <CardActionArea>
                     <Box padding={2} width={300} hight={600}>
                         <h3>{movie.title}</h3>
@@ -54,12 +54,3 @@ function MovieItem({ movie }) {
 }
 
 export default MovieItem;
-
-
-{/* <div key={movie.id} >
-                        <h3>{movie.title}</h3>
-                        <img
-                            src={movie.poster}
-                            alt={movie.title}
-                            onClick={() => movieClicked(movie)} />
-                    </div> */}

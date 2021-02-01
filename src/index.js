@@ -17,6 +17,8 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeEvery('GET_GENRES_LIST', getGenresList);
+    yield takeEvery('GET_THE_DETS', getDetails)
     yield takeEvery('GET_GENRES', getGenres);
     yield takeEvery('ADD_MOVIE', addMovie);
 }
@@ -32,14 +34,24 @@ function* fetchAllMovies() {
     }
 }
 
+function* getGenresList() {
+    // get all genres from the DB
+    try {
+        const genres = yield axios.get('/api/genre');
+        console.log('get genres:', genres.data);
+        yield put({ type: 'SET_GENRES', payload: genres.data });
+    } catch {
+        console.log('get all genres error');
+    }
+}
+
+// SAGA to get the genres
 function* getGenres(action) {
     try{
         console.log('in getGenres saga for id:', action.payload);
         const response = yield axios.get(`/api/movie/genre/${action.payload}`)
         console.log('response from server for genre:', response.data);
-        //this data will need to go do a reducer,
-        //that reducer will be grabbed by the details page with useEffect
-        //server get will query both tables
+        
         yield put({type: 'SET_GENRES', payload: response.data})
     }catch(error) {
         console.log(error);
@@ -47,6 +59,19 @@ function* getGenres(action) {
     }
 }
 
+// SAGA to get the details for specific movie.
+function* getDetails(action) {
+    try{
+        console.log('in getDetails saga for id:', action.payload);
+        const response = yield axios.get(`/api/movie/${action.payload}`)
+        console.log('response from server for movie:', response.data);
+        
+        yield put({type: 'SEE_DETAILS', payload: response.data})
+    }catch(error) {
+        console.log(error);
+        alert('problem getting details')
+    }
+}
 
 function* addMovie(action) {
     // get all genres from the DB
@@ -86,6 +111,12 @@ const movies = (state = [], action) => {
     }
 }
 
+const movieDetailsReducer = (state = [], action) => {
+    if(action.type === 'SEE_DETAILS') {
+        return action.payload;
+    }
+    return state;
+}
 
 
 // Used to store the movie genres
@@ -111,6 +142,7 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        movieDetailsReducer
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

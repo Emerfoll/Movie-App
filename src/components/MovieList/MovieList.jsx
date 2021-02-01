@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { Grid } from '@material-ui/core';
 
 
+
 function MovieList() {
 
     const history = useHistory();
@@ -22,7 +23,7 @@ function MovieList() {
             <h1>MovieList</h1>
             <Grid container spacing={4} justify="center" className="movies">
                 {movies.map((movie) => (
-                    <Grid item key={movie.id}>
+                    <Grid item key={movie.id} className="movieCardsArea">
                         <MovieItem
                             movie={movie}
                             key={movie.id}
