@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import './App.css';
 import MovieList from '../MovieList/MovieList'
@@ -8,9 +7,6 @@ import AddMovie from '../AddMovie/AddMovie.jsx'
 
 
 function App() {
-
-  const dispatch = useDispatch();
-  
 
 
   return (

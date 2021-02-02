@@ -1,5 +1,6 @@
 -- CREATE DATABASE "saga_movies_weekend"
 
+![screenshot of the ERD](public/images/ERD.png)
 
 CREATE TABLE "movies" (
   "id" SERIAL PRIMARY KEY,
